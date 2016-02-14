@@ -32,12 +32,15 @@ symlink ".zshrc"
 
 # Setup vundle
 echo ""
-echo "Setup Vundle"
-echo "Run git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+echo "Setup Vundle:"
+echo "Run: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 echo "Run: vim +PluginInstall +qall"
 
 # Setup zsh
-echo "Install zsh and set it to your default shell"
+echo ""
+echo "Need to install zsh and set it to your default shell"
 
-
+# Install ctags
+echo ""
+echo "Need to install ctags"
 
