@@ -1,21 +1,35 @@
 # user, host, full path, git info, virtualenv info
 # on two lines for easier vgrepping
 
+setopt prompt_subst
+
+() {
+
+local CUR_USER CUR_HOST CUR_PATH GIT_BRANCH RETURN_ARROW
+
+CUR_USER='%F%{$FG[040]%}%n%f'
+CUR_HOST='%F%{$FG[033]%}%m%f'
+CUR_PATH='%F%{$fg[cyan]%}%~%f'
+GIT_BRANCH='$(git_prompt_info)'
+RETURN_ARROW='%F%{$fg[red]%}>%f'
+
 # Pull left
-PROMPT=$'
-%{\e[0;34m%}%B┌─[%b%{$FG[040]%}%n%{$reset_color%}%B@%b%{$FG[033]%}%m%{$reset_color%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{$fg[cyan]%}%~%{$reset_color%}%B]%b%{\e[0m%}$(git_prompt_info) $ 
-%{\e[0;34m%}%B└─%B[%{$fg[red]%}>%{$reset_color%}%B]%{\e[0m%}%b '
+PROMPT="
+┌─[${CUR_USER}@${CUR_HOST}] - [${CUR_PATH}] ${GIT_BRANCH}$
+└─[${RETURN_ARROW}] "
 
 # Pull right
 RPROMPT=$'$(virtualenv_prompt_info)'
 
-
-PS2=$'%{$fg[red]%}%B>%{\e[0m%}%b%{$reset_color%} '
-
-ZSH_THEME_GIT_PROMPT_PREFIX=" - %B[%b%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%B]%b"
+# Git setup
+ZSH_THEME_GIT_PROMPT_PREFIX="- [%F%{$fg[yellow]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f] "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[202]%} ✘"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$FG[040]%} ✔"
-ZSH_THEME_VIRTUALENV_PREFIX="%B[%b%{$fg[magenta]%}"
-ZSH_THEME_VIRTUALENV_SUFFIX="%{$reset_color%}%B]%b "
+
+# Virtualenv setup
+ZSH_THEME_VIRTUALENV_PREFIX="[%F%{$fg[magenta]%}"
+ZSH_THEME_VIRTUALENV_SUFFIX="%f] "
+
+}
 
