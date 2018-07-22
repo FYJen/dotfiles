@@ -19,7 +19,7 @@
     graft = !legit graft \"$@\"
 [user]
     name = Arthur Jen 
-    email = cowboy5110@hotmail.com 
+    email = <YOUR EMAIL> 
 [core]
     editor = /usr/local/bin/vim
 [grep]
